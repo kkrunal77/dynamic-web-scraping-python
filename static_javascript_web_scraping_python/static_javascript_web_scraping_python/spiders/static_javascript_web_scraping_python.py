@@ -42,22 +42,21 @@ class static_javascript_web_scraping_pythonSpider(scrapy.Spider):
                 break
             print("End :",i)
             print('*'*40)
+        # urls = [
+        # 		"https://www.sosnc.gov/online_services/Search/Business_Registration_profile?Id=4968883",
+        # 		"https://www.sosnc.gov/online_services/Search/Business_Registration_profile?Id=8177545",
+        # 		"https://www.sosnc.gov/online_services/Search/Business_Registration_profile?Id=4755983"
+        # 		]
         # for url in urls:
-            # yield scrapy.Request(url=url, callback=self.parse)
+        #     yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
         main_page = BeautifulSoup(response.body, "lxml")
         # print(main_page)
-
+        tag_name = main_page.find_all('section')
+        # print(tag_name)
         dict_name = {"From_Url"  : response.url ,
-        				"Html" : main_page}
+        				"Html_content" : tag_name ,
+        				"All_Html_content" : main_page}
         yield dict_name
-        # next_page = main_page.find('a', text = 'Next 100 →')
-        # print('**'*100)
-        # print(next_page['href'])
-        # if next_page:
-        #     next_href = next_page['href']
-        #     next_page_url = 'https://coinmarketcap.com/' + next_href
-        #     print(next_page_url)
-        #     request = scrapy.Request(url=next_page_url)
-        #     yield request
+        
