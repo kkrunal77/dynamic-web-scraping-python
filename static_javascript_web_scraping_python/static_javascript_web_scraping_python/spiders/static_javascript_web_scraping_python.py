@@ -49,6 +49,7 @@ class static_javascript_web_scraping_pythonSpider(scrapy.Spider):
         # 		]
         # for url in urls:
         #     yield scrapy.Request(url=url, callback=self.parse)
+        
 
     def parse(self, response):
         main_page = BeautifulSoup(response.body, "lxml")
